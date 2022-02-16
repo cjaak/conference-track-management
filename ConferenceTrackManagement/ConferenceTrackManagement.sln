@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceTrackManagement", "ConferenceTrackManagement\ConferenceTrackManagement.csproj", "{B2314162-9B4A-44EC-8C71-88BD9AC28BDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConferenceTrackManagement", "TestConferenceTrackManagement\TestConferenceTrackManagement.csproj", "{47E624B4-722D-4100-BCAA-698914E774BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2314162-9B4A-44EC-8C71-88BD9AC28BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2314162-9B4A-44EC-8C71-88BD9AC28BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2314162-9B4A-44EC-8C71-88BD9AC28BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2314162-9B4A-44EC-8C71-88BD9AC28BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E624B4-722D-4100-BCAA-698914E774BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E624B4-722D-4100-BCAA-698914E774BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E624B4-722D-4100-BCAA-698914E774BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E624B4-722D-4100-BCAA-698914E774BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
