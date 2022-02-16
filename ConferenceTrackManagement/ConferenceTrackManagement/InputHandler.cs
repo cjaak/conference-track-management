@@ -6,16 +6,24 @@ public class InputHandler
 {
     public string FilePath { get; }
     
+    public List<Talk> Talks { get; }
+    
 
     public InputHandler(string filePath)
     {
         FilePath = filePath;
+        Talks = new List<Talk>();
+    }
+
+    public void CreateListOfTalks()
+    {
+        
     }
 
     internal bool ValidateTalk(string talkString)
     {
-        Regex regexDefault = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) [0-9]+min");
-        Regex regexLightning = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) lightning");
+        Regex regexDefault = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) [0-9]+min"); //pattern for 'title <minutes>min' format
+        Regex regexLightning = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) lightning"); //pattern for 'title lightning' format
         return regexDefault.IsMatch(talkString) || regexLightning.IsMatch(talkString);
     }
 
@@ -35,5 +43,10 @@ public class InputHandler
             TimeSpan duration = new TimeSpan(0, 5, 0);
             return new Talk(title, duration);
         }
+    }
+
+    internal string[] FetchTalksFromFile()
+    {
+        return System.IO.File.ReadAllLines(FilePath);
     }
 }
