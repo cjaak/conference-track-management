@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>150</y>
+      <w>300</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ConferenceManager
+--
+Tracks: List&lt;Track&gt;
+--
+ConferenceManager()
+ScheduleConference(talks: List&lt;Talk&gt;)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>260</y>
+      <w>430</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Track
+--
+MorningSession: Session
+AfternoonSession: Session
+--
+Track()
++FillTrack(talks: List&lt;Talk&gt;): List&lt;Talk&gt;
+-FindTalkWithMaxDurationForLimit(limit: TimeSpan): Talk</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>140</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>InputHandler
+--
+List&lt;Talk&gt;
+--
++CreateListOfTalks(): void
+-FetchTalksFromFile(): void
+-ValidateTalk(talk: string): bool
+-ConvertToTalk(talk: string): Talk</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>590</y>
+      <w>270</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Talk
+--
+Title: string
+Duration: TimeSpan
+--
+Talk(title: string, duration: TimeSpan)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>400</y>
+      <w>300</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Session
+--
+MaxDuration: TimeSpan
+TotalMinutes: TimeSpan
+RestMinutes: TimeSpan
+List&lt;Talk&gt;
+--
+Session(maxDuration: TimeSpan)
+-CalculateTotalAndRestMinutes(): void
++ScheduleTalk(talk: Talk): bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>50</x>
+      <y>180</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;90.0;40.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>50</x>
+      <y>470</y>
+      <w>60</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;130.0;40.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>50</x>
+      <y>290</y>
+      <w>60</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;120.0;40.0;120.0</additional_attributes>
+  </element>
+</diagram>
