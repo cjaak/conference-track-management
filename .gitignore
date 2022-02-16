@@ -1,6 +1,6 @@
 # Common IntelliJ Platform excludes
 
-ConferneceTrackManagement/.idea/*
+ConferneceTrackManagement/.idea/
 
 *.suo
 *.user
