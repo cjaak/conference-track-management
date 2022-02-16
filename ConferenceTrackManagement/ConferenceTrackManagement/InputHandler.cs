@@ -25,13 +25,15 @@ public class InputHandler
         {
             string extractedNumber = Regex.Match(talkString, @"\d+").Value;
             int minutes = Convert.ToInt32(extractedNumber);
-            string title = Regex.Match(talkString, @"^[0-9]+").Value.Trim();
+            string title = Regex.Replace(talkString, @"[0-9]+min$", "").Trim();
             TimeSpan duration = new TimeSpan(0, minutes, 0);
             return new Talk(title, duration);
         }
         else
         {
-            return new Talk("", new TimeSpan(0, 0, 0));
+            string title = talkString.Substring(0, talkString.Length -10);
+            TimeSpan duration = new TimeSpan(0, 5, 0);
+            return new Talk(title, duration);
         }
     }
 }
