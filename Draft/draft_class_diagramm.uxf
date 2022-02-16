@@ -39,17 +39,19 @@ Track()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>140</y>
+      <x>480</x>
+      <y>530</y>
       <w>240</w>
-      <h>120</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>InputHandler
 --
+file_path: string
 List&lt;Talk&gt;
 --
+InputHandler(file_path: string)
 +CreateListOfTalks(): void
--FetchTalksFromFile(): void
+-FetchTalksFromFile(): string[]
 -ValidateTalk(talk: string): bool
 -ConvertToTalk(talk: string): Talk</panel_attributes>
     <additional_attributes/>
@@ -58,9 +60,9 @@ List&lt;Talk&gt;
     <id>UMLClass</id>
     <coordinates>
       <x>90</x>
-      <y>590</y>
+      <y>560</y>
       <w>270</w>
-      <h>110</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Talk
 --
@@ -76,17 +78,16 @@ Talk(title: string, duration: TimeSpan)</panel_attributes>
       <x>90</x>
       <y>400</y>
       <w>300</w>
-      <h>170</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Session
 --
 MaxDuration: TimeSpan
-TotalMinutes: TimeSpan
 RestMinutes: TimeSpan
 List&lt;Talk&gt;
 --
 Session(maxDuration: TimeSpan)
--CalculateTotalAndRestMinutes(): void
+-CalculateRestMinutes(): TimeSpan
 +ScheduleTalk(talk: Talk): bool
 </panel_attributes>
     <additional_attributes/>
@@ -106,12 +107,12 @@ Session(maxDuration: TimeSpan)
     <id>Relation</id>
     <coordinates>
       <x>50</x>
-      <y>470</y>
+      <y>460</y>
       <w>60</w>
-      <h>150</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>40.0;10.0;10.0;10.0;10.0;130.0;40.0;130.0</additional_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;110.0;40.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -123,5 +124,16 @@ Session(maxDuration: TimeSpan)
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>40.0;10.0;10.0;10.0;10.0;120.0;40.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>560</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
