@@ -13,11 +13,8 @@ public class InputHandler
 
     internal bool ValidateTalk(string talk)
     {
-        Regex regex = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) [0-9]+min", RegexOptions.IgnoreCase);
-        if (regex.IsMatch(talk))
-        {
-            return true;
-        }
-        return false;
+        Regex regexDefault = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) [0-9]+min", RegexOptions.IgnoreCase);
+        Regex regexLightning = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) lightning");
+        return regexDefault.IsMatch(talk) || regexLightning.IsMatch(talk);
     }
 }
