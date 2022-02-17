@@ -28,8 +28,8 @@ public class InputHandler
 
     internal bool ValidateTalk(string talkString)
     {
-        Regex regexDefault = new Regex(@"([a-zA-Z\s()]+) [0-9]+min"); //pattern for 'title <minutes>min' format
-        Regex regexLightning = new Regex(@"([ a-zA-Z\s()]+) lightning"); //pattern for 'title lightning' format
+        Regex regexDefault = new Regex(@"^([a-zA-Z\s()]+) [0-9]+min$"); //pattern for 'title <minutes>min' format
+        Regex regexLightning = new Regex(@"^([a-zA-Z\s()]+) lightning$"); //pattern for 'title lightning' format
         return regexDefault.IsMatch(talkString) || regexLightning.IsMatch(talkString);
     }
 
