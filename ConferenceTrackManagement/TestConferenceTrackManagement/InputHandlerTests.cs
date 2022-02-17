@@ -105,4 +105,13 @@ public class InputHandlerTests
         Assert.That(handler.Talks[1].Title, Is.EqualTo(expectedSecondElement.Title));
         Assert.That(handler.Talks[1].Duration, Is.EqualTo(expectedSecondElement.Duration));
     }
+
+    [Test]
+    public void CreateListOfTalks_EmptyTalks()
+    {
+        string path =  @"Data/test_input_empty.txt";
+        InputHandler handler = new InputHandler(path);
+        
+        handler.CreateListOfTalks();
+    }
 }
