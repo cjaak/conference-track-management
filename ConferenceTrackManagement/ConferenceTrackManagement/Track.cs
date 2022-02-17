@@ -12,5 +12,15 @@ public class Track
         MorningSession = new Session(morningMinutes);
         AfternoonSession = new Session(afternoonMinutes);
     }
+
+    public List<Talk> FillTrack(List<Talk> talks)
+    {
+        return talks;
+    }
+
+    internal Talk FindTalkWithMaxDurationForLimit(List<Talk> talks, TimeSpan limit)
+    {
+        return new Talk("", 0);
+    } 
     
 }
