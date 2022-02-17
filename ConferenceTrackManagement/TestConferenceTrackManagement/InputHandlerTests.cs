@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ConferenceTrackManagement;
 using Moq;
 using NUnit.Framework;
@@ -84,5 +85,24 @@ public class InputHandlerTests
             ()=> handler.CreateListOfTalks());
         
         Assert.That(handler.Talks.Count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void CreateListOfTalks_ValidTalks_ReturnsListOfTalks()
+    {
+        string path =  @"Data/test_input_valid.txt";
+        InputHandler handler = new InputHandler(path);
+
+        Talk expectedFirstElement = new Talk("Some Dummy Title", new TimeSpan(0, 45, 0));
+        Talk expectedSecondElement = new Talk("Another Title", new TimeSpan(0, 5, 0));
+        handler.CreateListOfTalks();
+        
+        
+        Assert.That(handler.Talks.Count, Is.EqualTo(2));
+        
+        Assert.That(handler.Talks[0].Title, Is.EqualTo(expectedFirstElement.Title));
+        Assert.That(handler.Talks[0].Duration, Is.EqualTo(expectedFirstElement.Duration));
+        Assert.That(handler.Talks[1].Title, Is.EqualTo(expectedSecondElement.Title));
+        Assert.That(handler.Talks[1].Duration, Is.EqualTo(expectedSecondElement.Duration));
     }
 }
