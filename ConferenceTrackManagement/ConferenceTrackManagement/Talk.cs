@@ -10,4 +10,9 @@ public class Talk
         Title = title;
         Duration = duration;
     }
+
+    public override string ToString()
+    {
+        return $"{nameof(Title)}: {Title}, {nameof(Duration)}: {Duration}";
+    }
 }
