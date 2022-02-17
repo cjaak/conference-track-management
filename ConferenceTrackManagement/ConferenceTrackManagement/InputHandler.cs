@@ -17,7 +17,7 @@ public class InputHandler
 
     public void CreateListOfTalks()
     {
-        foreach (var talk in FetchTalksFromFile())
+        foreach (string talk in FetchTalksFromFile())
         {
             if (!ValidateTalk(talk))
             {
@@ -26,14 +26,14 @@ public class InputHandler
         }
     }
 
-    internal virtual bool ValidateTalk(string talkString)
+    internal bool ValidateTalk(string talkString)
     {
-        Regex regexDefault = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) [0-9]+min"); //pattern for 'title <minutes>min' format
-        Regex regexLightning = new Regex("([a-zA-Z]+( [a-zA-Z]+)+) lightning"); //pattern for 'title lightning' format
+        Regex regexDefault = new Regex(@"([a-zA-Z\s()]+) [0-9]+min"); //pattern for 'title <minutes>min' format
+        Regex regexLightning = new Regex(@"([ a-zA-Z\s()]+) lightning"); //pattern for 'title lightning' format
         return regexDefault.IsMatch(talkString) || regexLightning.IsMatch(talkString);
     }
 
-    internal virtual Talk ConvertToTalk(string talkString)
+    internal Talk ConvertToTalk(string talkString)
     {
         if (talkString.EndsWith("min"))
         {
@@ -51,7 +51,7 @@ public class InputHandler
         }
     }
 
-    internal virtual string[] FetchTalksFromFile()
+    private string[] FetchTalksFromFile()
     {
         return System.IO.File.ReadAllLines(FilePath);
     }
