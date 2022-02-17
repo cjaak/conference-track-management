@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using ConferenceTrackManagement;
 using Moq;
 using NUnit.Framework;
@@ -75,18 +76,13 @@ public class InputHandlerTests
     [Test]
     public void CreateListOfTalks_InvalidTalk_ThrowsException()
     {
-        _handlerMock = new Mock<InputHandler>();
-        _handlerMock.Setup(h => h.ValidateTalk("")).Returns(false);
-        string[] dummyTalkStringArray = new string[] { "" };
-        _handlerMock.Setup(h=> h.FetchTalksFromFile()).Returns(dummyTalkStringArray);
-
-        _handlerMock.Object.CreateListOfTalks();
-        _handlerMock.Verify(h => h.ValidateTalk, Times.Once);
-        Assert.That(_handlerMock.Object.Talks.Count, Is.Zero);
-        Assert.Throws<ArgumentException>(
-            ()=>
-            {
-                throw new ArgumentException();
-            });
+        string path =  @"Data/test_input_invalid.txt";
+        InputHandler handler = new InputHandler(path);
+        
+        
+        var ex = Assert.Throws<ArgumentException>(
+            ()=> handler.CreateListOfTalks());
+        
+        Assert.That(handler.Talks.Count, Is.EqualTo(0));
     }
 }
