@@ -5,10 +5,10 @@ public class Talk
     public string Title { get; }
     public TimeSpan Duration { get; }
 
-    public Talk(string title, TimeSpan duration)
+    public Talk(string title, int minutes)
     {
         Title = title;
-        Duration = duration;
+        Duration = new TimeSpan(0,minutes,0);
     }
 
     public override string ToString()

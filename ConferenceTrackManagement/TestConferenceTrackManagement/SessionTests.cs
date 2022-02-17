@@ -10,8 +10,8 @@ public class SessionTests
     [Test]
     public void ScheduleTalkAndUpdateRestMinutes_TalkObject_SetsTalkAndRestMinutesForSession()
     {
-        Session session = new Session(new TimeSpan(0,180,0));
-        Talk input = new Talk("Dummy Title", new TimeSpan(0, 30, 0));
+        Session session = new Session(180);
+        Talk input = new Talk("Dummy Title", 30);
         TimeSpan expectedDuaration = new TimeSpan(0, 150, 0);
         
         session.ScheduleTalkAndUpdateRestMinutes(input);

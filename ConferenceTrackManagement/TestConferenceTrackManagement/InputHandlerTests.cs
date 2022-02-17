@@ -53,7 +53,7 @@ public class InputHandlerTests
     {
         InputHandler handler = new InputHandler("");
         string input = "dummy title 30min";
-        Talk expected = new Talk("dummy title", new TimeSpan(0, 30, 0));
+        Talk expected = new Talk("dummy title", 30);
 
         Talk output = handler.ConvertToTalk(input);
 
@@ -66,7 +66,7 @@ public class InputHandlerTests
     {
         InputHandler handler = new InputHandler("");
         string input = "dummy title lightning";
-        Talk expected = new Talk("dummy title", new TimeSpan(0, 5, 0));
+        Talk expected = new Talk("dummy title", 5);
 
         Talk output = handler.ConvertToTalk(input);
         
@@ -93,8 +93,8 @@ public class InputHandlerTests
         string path =  @"Data/test_input_valid.txt";
         InputHandler handler = new InputHandler(path);
 
-        Talk expectedFirstElement = new Talk("Some Dummy Title", new TimeSpan(0, 45, 0));
-        Talk expectedSecondElement = new Talk("Another Title", new TimeSpan(0, 5, 0));
+        Talk expectedFirstElement = new Talk("Some Dummy Title", 45);
+        Talk expectedSecondElement = new Talk("Another Title", 5);
         handler.CreateListOfTalks();
         
         

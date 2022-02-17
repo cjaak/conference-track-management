@@ -7,10 +7,10 @@ public class Track
     public Session MorningSession { get; }
     public Session AfternoonSession { get; }
 
-    public Track(int morningMinutes, int afernoonMinutes)
+    public Track(int morningMinutes, int afternoonMinutes)
     {
-        MorningSession = new Session(new TimeSpan(0,morningMinutes, 0));
-        AfternoonSession = new Session(new TimeSpan(0, afernoonMinutes, 0));
+        MorningSession = new Session(morningMinutes);
+        AfternoonSession = new Session(afternoonMinutes);
     }
     
 }

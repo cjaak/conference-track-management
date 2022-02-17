@@ -7,10 +7,10 @@ public class Session
     
     public List<Talk> TalksInSession { get; }
 
-    public Session(TimeSpan maxDuration)
+    public Session(int maxMinutes)
     {
-        MaxDuration = maxDuration;
-        RestMinutes = maxDuration;
+        MaxDuration = new TimeSpan(0,maxMinutes ,0);
+        RestMinutes = MaxDuration;
         TalksInSession = new List<Talk>();
     }
 
