@@ -20,7 +20,15 @@ public class Track
 
     internal Talk FindTalkWithMaxDurationForLimit(List<Talk> talks, TimeSpan limit)
     {
-        return new Talk("", 0);
+        Talk max = new Talk("", 0);
+        foreach (var talk in talks)
+        {
+            if(talk.Duration <= limit && talk.Duration > max.Duration)
+            {
+                max = talk;
+            }
+        }
+        return max;
     } 
     
 }

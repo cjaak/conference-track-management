@@ -44,7 +44,7 @@ public class TrackTests
             new Talk("Eighth", 40)
         };
 
-        List<Talk> output = track.FillTracks(input);
+        List<Talk> output = track.FillTrack(input);
 
         Assert.That(track.MorningSession.RestMinutes, Is.Zero);
         Assert.That(track.AfternoonSession.RestMinutes, Is.Zero);
@@ -55,6 +55,7 @@ public class TrackTests
         Assert.That(output, Is.EquivalentTo(expectedReturn));
     }
 
+    [Test]
     public void FindTalkWithMaxDurationForLimit_ListOfTalksAndLimit_ReturnsMaxTalkWithinLimit()
     {
         Track track = new Track(0, 0);
