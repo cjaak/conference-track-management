@@ -57,8 +57,7 @@ public class InputHandlerTests
 
         Talk output = handler.ConvertToTalk(input);
 
-        Assert.That(output.Title, Is.EqualTo(expected.Title));
-        Assert.That(output.Duration, Is.EqualTo(expected.Duration));
+        Assert.That(output, Is.EqualTo(expected));
     }
 
     [Test]
@@ -69,9 +68,8 @@ public class InputHandlerTests
         Talk expected = new Talk("dummy title", 5);
 
         Talk output = handler.ConvertToTalk(input);
-        
-        Assert.That(output.Title, Is.EqualTo(expected.Title));
-        Assert.That(output.Duration, Is.EqualTo(expected.Duration));
+
+        Assert.That(output, Is.EqualTo(expected));
     }
 
     [Test]
@@ -92,18 +90,17 @@ public class InputHandlerTests
     {
         string path =  @"Data/test_input_valid.txt";
         InputHandler handler = new InputHandler(path);
-
-        Talk expectedFirstElement = new Talk("Some Dummy Title", 45);
-        Talk expectedSecondElement = new Talk("Another Title", 5);
+        List<Talk> expected = new List<Talk>()
+        {
+            new Talk("Some Dummy Title", 45),
+            new Talk("Another Title", 5)
+        };
+        
         handler.CreateListOfTalks();
         
         
         Assert.That(handler.Talks.Count, Is.EqualTo(2));
-        
-        Assert.That(handler.Talks[0].Title, Is.EqualTo(expectedFirstElement.Title));
-        Assert.That(handler.Talks[0].Duration, Is.EqualTo(expectedFirstElement.Duration));
-        Assert.That(handler.Talks[1].Title, Is.EqualTo(expectedSecondElement.Title));
-        Assert.That(handler.Talks[1].Duration, Is.EqualTo(expectedSecondElement.Duration));
+        Assert.That(handler.Talks, Is.EqualTo(expected));
     }
 
     [Test]
