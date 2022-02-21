@@ -26,28 +26,28 @@ public class TrackTests
 
         List<Talk> expectedReturn = new List<Talk>()
         {
+            new Talk("Sixth", 100),
             new Talk("Seventh", 50)
         };
 
         List<Talk> expectedMorningList = new List<Talk>()
         {
             new Talk("First", 100),
-            new Talk("Second", 100),
             new Talk("Fourth", 80),
         };
         
         List<Talk> expectedAfternoonList = new List<Talk>()
         {
+            new Talk("Second", 100),
             new Talk("Third", 70),
             new Talk("Fifth", 30),
-            new Talk("Sixth", 100),
             new Talk("Eighth", 40)
         };
 
         List<Talk> output = track.FillTrack(input);
 
-        Assert.That(track.MorningSession.RestMinutes, Is.Zero);
-        Assert.That(track.AfternoonSession.RestMinutes, Is.Zero);
+        Assert.That(track.MorningSession.RestMinutes, Is.EqualTo(new TimeSpan(0)));
+        Assert.That(track.AfternoonSession.RestMinutes, Is.EqualTo(new TimeSpan(0)));
 
         Assert.That(track.MorningSession.TalksInSession, Is.EquivalentTo(expectedMorningList));
         Assert.That(track.AfternoonSession.TalksInSession, Is.EquivalentTo(expectedAfternoonList));
