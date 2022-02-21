@@ -59,8 +59,6 @@ public class SessionTests
         List<Talk> expectedInSession = new List<Talk>()
         {
             new Talk("First", 100),
-            new Talk("Second", 100),
-            new Talk("Third", 70),
             new Talk("Fourth", 80),
         };
         
