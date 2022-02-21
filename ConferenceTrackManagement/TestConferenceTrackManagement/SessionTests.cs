@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ConferenceTrackManagement;
 using NUnit.Framework;
 
@@ -19,5 +20,26 @@ public class SessionTests
         Assert.That(session.RestMinutes, Is.EqualTo(expectedDuaration));
         Assert.That(session.TalksInSession[0].Title, Is.EqualTo(input.Title));
         Assert.That(session.TalksInSession[0].Duration, Is.EqualTo(input.Duration));
+    }
+    
+    [Test]
+    public void FindTalkWithMaxDurationForLimit_ListOfTalksAndLimit_ReturnsMaxTalkWithinLimit()
+    {
+        Session session = new Session(0);
+        List<Talk> input = new List<Talk>()
+        {
+            new Talk("First", 100),
+            new Talk("Second", 100),
+            new Talk("Third", 70),
+            new Talk("Fourth", 80),
+            new Talk("Fifth", 30),
+            new Talk("Sixth", 100),
+            new Talk("Seventh", 50),
+            new Talk("Eighth", 40)
+        };
+
+        Talk output = session.FindTalkWithMaxDurationForLimit(input, new TimeSpan(0, 60, 0));
+
+        Assert.That(output, Is.EqualTo(input[6]));
     }
 }
