@@ -12,15 +12,16 @@ public class Session
         MaxDuration = new TimeSpan(0,maxMinutes ,0);
         RestMinutes = MaxDuration;
         TalksInSession = new List<Talk>();
-        Console.WriteLine("MINUTES LEFT" + RestMinutes);
     }
 
     public List<Talk> FillSession(List<Talk> talks)
     {
         foreach (var talk in talks.ToList())
         {
+            Console.WriteLine("CURRENT:"+talk);
             if (ScheduleTalkAndUpdateRestMinutes(talk))
             {
+                Console.WriteLine("REMOVE:"+talk);
                 talks.Remove(talk);
             }
             else
@@ -29,7 +30,7 @@ public class Session
                 if (bestFittingTalk.Duration > new TimeSpan(0))
                 {
                     ScheduleTalkAndUpdateRestMinutes(bestFittingTalk);
-                    talks.Remove(talk);
+                    talks.Remove(bestFittingTalk);
                 }
             }
         }
