@@ -65,4 +65,9 @@ public class Session
     {
         return RestMinutes - duration;
     }
+
+    public override string ToString()
+    {
+        return $"{nameof(MaxDuration)}: {MaxDuration}, {nameof(RestMinutes)}: {RestMinutes}, {nameof(TalksInSession)}: {string.Join(", ", TalksInSession)}";
+    }
 }

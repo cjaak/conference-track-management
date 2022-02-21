@@ -1,4 +1,5 @@
 ﻿using System;
+using Castle.Components.DictionaryAdapter;
 
 namespace ConferenceTrackManagement
 {
