@@ -21,9 +21,16 @@ public class Session
         {
             if (ScheduleTalkAndUpdateRestMinutes(talk))
             {
-                Console.WriteLine("Removing Talk " + talk);
-                Console.WriteLine("Minutes Left = " + RestMinutes);
                 talks.Remove(talk);
+            }
+            else
+            {
+                Talk bestFittingTalk = FindTalkWithMaxDurationForLimit(talks, RestMinutes);
+                if (bestFittingTalk.Duration > new TimeSpan(0))
+                {
+                    ScheduleTalkAndUpdateRestMinutes(bestFittingTalk);
+                    talks.Remove(talk);
+                }
             }
         }
         return talks;
