@@ -15,4 +15,21 @@ public class Talk
     {
         return $"{nameof(Title)}: {Title}, {nameof(Duration)}: {Duration}";
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+        {
+            return false;
+        }
+        Talk talk = obj as Talk;
+        if (talk.Duration == Duration && talk.Title == Title)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
