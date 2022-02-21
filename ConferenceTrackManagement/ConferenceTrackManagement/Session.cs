@@ -18,10 +18,8 @@ public class Session
     {
         foreach (var talk in talks.ToList())
         {
-            Console.WriteLine("CURRENT:"+talk);
             if (ScheduleTalkAndUpdateRestMinutes(talk))
             {
-                Console.WriteLine("REMOVE:"+talk);
                 talks.Remove(talk);
             }
             else
