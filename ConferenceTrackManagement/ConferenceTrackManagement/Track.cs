@@ -15,20 +15,42 @@ public class Track
 
     public List<Talk> FillTrack(List<Talk> talks)
     {
-        return talks;
-    }
-
-    internal Talk FindTalkWithMaxDurationForLimit(List<Talk> talks, TimeSpan limit)
-    {
-        Talk max = new Talk("", 0);
-        foreach (var talk in talks)
+        string session = "morning";
+        Talk? addedTalk;
+        foreach (var talk in talks.ToList())
         {
-            if(talk.Duration <= limit && talk.Duration > max.Duration)
+            switch (session)
             {
-                max = talk;
+                case "morning":
+                    addedTalk = null;//ScheduleFittingTalk(talks, MorningSession, talk);
+                    if (addedTalk is not null)
+                    {
+                        talks.Remove(addedTalk);
+                    }
+                    else
+                    {
+                        session = "afternoon";
+                    }
+                    break;
+                case "afternoon":
+                    addedTalk = null;//ScheduleFittingTalk(talks, AfternoonSession, talk);
+                    if (addedTalk is not null)
+                    {
+                        talks.Remove(addedTalk);
+                    }
+                    else
+                    {
+                        session = "";
+                    }
+                    break;
+                default:
+                    break;
             }
         }
-        return max;
-    } 
+        return talks;
+    }
+    
+
+   
     
 }

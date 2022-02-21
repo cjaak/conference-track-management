@@ -10,6 +10,7 @@ namespace ConferenceTrackManagement
             InputHandler handler = new InputHandler(path);
             handler.CreateListOfTalks();
             Console.WriteLine(string.Join("\n", handler.Talks));
+            
         }
     }
 }
