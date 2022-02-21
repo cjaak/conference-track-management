@@ -42,4 +42,39 @@ public class SessionTests
 
         Assert.That(output, Is.EqualTo(input[6]));
     }
+
+    [Test]
+    public void FillSession_ListOfTalks_ReturnsTalksThatWereNotUsed()
+    {
+        Session session = new Session(180);
+        
+        List<Talk> input = new List<Talk>()
+        {
+            new Talk("First", 100),
+            new Talk("Second", 100),
+            new Talk("Third", 70),
+            new Talk("Fourth", 80),
+        };
+        
+        List<Talk> expectedInSession = new List<Talk>()
+        {
+            new Talk("First", 100),
+            new Talk("Second", 100),
+            new Talk("Third", 70),
+            new Talk("Fourth", 80),
+        };
+        
+        List<Talk> expectedOutput = new List<Talk>()
+        {
+            new Talk("Second", 100),
+            new Talk("Third", 70),
+        };
+
+        List<Talk> output = session.FillSession(input);
+        
+        Assert.That(session.TalksInSession, Is.EquivalentTo(expectedInSession));
+        Assert.That(output, Is.EquivalentTo(expectedOutput));
+        Assert.That(session.TalksInSession.Count, Is.EqualTo(2));
+    }
+    
 }
