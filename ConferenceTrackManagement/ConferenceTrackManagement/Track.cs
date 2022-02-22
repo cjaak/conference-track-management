@@ -36,7 +36,8 @@ public class Track
         }
         else
         {
-            networking = afternoonStart.Add(AfternoonSession.RestMinutes);
+            TimeSpan actualAfternoonDuration = AfternoonSession.MaxDuration - AfternoonSession.RestMinutes; 
+            networking = afternoonStart.Add(actualAfternoonDuration);
         }
         track.Add($"{networking:hh:mm tt} Networking Event");
         return track;
