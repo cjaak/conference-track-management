@@ -79,6 +79,9 @@ public class SessionTests
     public void CreatePrintableList_Start9AM_ListOfTalksWithStartingTime()
     {
         Session session = new Session(180);
+        
+        var dateNow = DateTime.Now;
+        var startTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 9, 0, 0);
 
         session.TalksInSession = new List<Talk>()
         {
@@ -88,11 +91,11 @@ public class SessionTests
 
         List<string> expectedOutput = new List<string>()
         {
-            "09:00AM Sample A 90min",
-            "10:00AM Sample B 90min"
+            "09:00 AM Sample A 90min",
+            "10:30 AM Sample B 90min"
         };
 
-        List<string> output = session.CreatePrintableList(new DateTime(0,0,0,9,0,0));
+        List<string> output = session.CreatePrintableList(startTime);
 
         Assert.That(output, Is.EqualTo(expectedOutput));
     }
