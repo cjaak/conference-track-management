@@ -74,5 +74,27 @@ public class SessionTests
         Assert.That(output, Is.EquivalentTo(expectedOutput));
         Assert.That(session.TalksInSession.Count, Is.EqualTo(2));
     }
+
+    [Test]
+    public void CreatePrintableList_Start9AM_ListOfTalksWithStartingTime()
+    {
+        Session session = new Session(180);
+
+        session.TalksInSession = new List<Talk>()
+        {
+            new Talk("Sample A", 90),
+            new Talk("Sample B", 90)
+        };
+
+        List<string> expectedOutput = new List<string>()
+        {
+            "09:00AM Sample A 90min",
+            "10:00AM Sample B 90min"
+        };
+
+        List<string> output = session.CreatePrintableList(new DateTime(0,0,0,9,0,0));
+
+        Assert.That(output, Is.EqualTo(expectedOutput));
+    }
     
 }
