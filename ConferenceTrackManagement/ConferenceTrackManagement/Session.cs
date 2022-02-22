@@ -5,7 +5,7 @@ public class Session
     public TimeSpan MaxDuration { get; }
     public TimeSpan RestMinutes { get; set; }
     
-    public List<Talk> TalksInSession { get; }
+    public List<Talk> TalksInSession { get; set;}
 
     public Session(int maxMinutes)
     {
@@ -34,9 +34,19 @@ public class Session
         }
         return talks;
     }
-    
-    
-    
+
+    public List<string> CreatePrintableList(DateTime start)
+    {
+        List<string> pintableList = new List<string>();
+        foreach (var talk in TalksInSession)
+        {
+            string formattedTalk = $"{start.ToString("hh:mm tt")} {talk.Title} {talk.Duration.TotalMinutes}min";
+            start += talk.Duration;
+            pintableList.Add(formattedTalk);
+        }
+        return pintableList;
+    }
+
     internal Talk FindTalkWithMaxDurationForLimit(List<Talk> talks, TimeSpan limit)
     {
         Talk max = new Talk("", 0);
