@@ -71,7 +71,7 @@ exactly duplicate the sample output given here
 
 ## Instructions
 
-In order to run the programm you need to run `ConferenceTrackManagement/Program.cs`. You might need to copy the `Data` folders to `bin/Debug/net6.0/` or change the configure the path defined in `ConferenceTrackManagement/Program.cs`.
+In order to run the programm you need to run `ConferenceTrackManagement/Program.cs`. You might need to copy the `Data` folders to `bin/Debug/net6.0/` or configure the path defined in `ConferenceTrackManagement/Program.cs`.
 
 ## Approach
 
