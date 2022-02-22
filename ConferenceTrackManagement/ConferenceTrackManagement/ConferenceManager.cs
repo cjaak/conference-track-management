@@ -4,16 +4,19 @@ public class ConferenceManager
 {
     public List<Track> Tracks {get;}
 
-    public ConferenceManager()
+    private Configuration Config { get; set; }
+
+    public ConferenceManager(Configuration config)
     {
         Tracks = new List<Track>();
+        Config = config;
     }
 
-    public void ScheduleConference(List<Talk> talks, int morningMinutes, int afternoonMinutes)
+    public void ScheduleConference(List<Talk> talks)
     {
         do
         {
-            Track track = new Track(morningMinutes, afternoonMinutes);
+            Track track = new Track(Config.MorningSessionMinutes, Config.AfternoonSessionMinutes);
             talks = track.FillTrack(talks);
             Tracks.Add(track);
         } while (talks.Count > 0);
@@ -21,11 +24,10 @@ public class ConferenceManager
 
     public List<string> PrintConferenceTimeTable()
     {
-        var dateNow = DateTime.Now;
-        var morningStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 9, 0, 0);
-        var afternoonStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 13, 0, 0);
-        var lunchStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 12, 0, 0);
-        TimeSpan networkingWaitTime = new TimeSpan(0, 180, 0);
+        DateTime morningStart = Config.MorningSessionStart;
+        DateTime afternoonStart = Config.AfternoonSessionStart;
+        DateTime lunchStart = Config.LunchStart;
+        TimeSpan networkingWaitTime = Config.NetworkingMinimumWaitingPeriod;
         List<string> formattedTable = new List<string>();
         for (int i = 0; i < Tracks.Count; i++)
         {

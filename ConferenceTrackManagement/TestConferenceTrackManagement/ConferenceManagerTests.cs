@@ -12,7 +12,16 @@ public class ConferenceManagerTests
     [Test]
     public void ScheduleConference_ListOfTalks_ListHasLength2()
     {
-        ConferenceManager manager = new ConferenceManager();
+        Configuration config = new Configuration(
+            180,
+             240,
+            new DateTime(),
+            new DateTime(), 
+            new DateTime(),
+            new DateTime()
+            );
+        
+        ConferenceManager manager = new ConferenceManager(config);
         
         List<Talk> input = new List<Talk>()
         {
@@ -26,7 +35,7 @@ public class ConferenceManagerTests
             new Talk("Eighth", 40)
         };
         
-        manager.ScheduleConference(input, 100, 200);
+        manager.ScheduleConference(input);
 
         Assert.That(manager.Tracks.Count, Is.EqualTo(2));
 
@@ -35,7 +44,17 @@ public class ConferenceManagerTests
     [Test]
     public void PrintConferenceTimeTable_ListOfTracks_FormattedList()
     {
-        ConferenceManager manager = new ConferenceManager();
+        DateTime date = DateTime.Now;
+        Configuration config = new Configuration(
+            180,
+            240,
+            new DateTime(date.Year, date.Month, date.Day, 9,0,0),
+            new DateTime(date.Year, date.Month, date.Day, 13,0,0),
+            new DateTime(date.Year, date.Month, date.Day, 12,0,0),
+            new DateTime(date.Year, date.Month, date.Day, 16,0,0)
+        );
+        
+        ConferenceManager manager = new ConferenceManager(config);
         Track track1 = new Track(180, 240);
         Track track2 = new Track(180, 240);
         
