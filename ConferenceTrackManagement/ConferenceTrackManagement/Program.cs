@@ -11,6 +11,12 @@ namespace ConferenceTrackManagement
             InputHandler handler = new InputHandler(path);
             handler.CreateListOfTalks();
             Console.WriteLine(string.Join("\n", handler.Talks));
+            
+            ConferenceManager manager = new ConferenceManager();
+            manager.ScheduleConference(handler.Talks, 180, 240);
+
+            List<string> formattedTable = manager.PrintConferenceTimeTable();
+            Console.WriteLine(string.Join("\n", formattedTable));
         }
     }
 }
