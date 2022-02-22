@@ -12,9 +12,8 @@ namespace TestConferenceTrackManagement;
 [TestFixture]
 public class InputHandlerTests
 {
-    Mock<InputHandler> _handlerMock;
-    
-    
+
+
     [Test]
     public void ValidateTalk_Title30min_ReturnsTrue()
     {

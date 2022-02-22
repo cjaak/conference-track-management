@@ -12,6 +12,10 @@ public class ConferenceManager
         Config = config;
     }
 
+    /// <summary>
+    /// Creates Tracks and fills them, until all talks are scheduled
+    /// </summary>
+    /// <param name="talks">Talks that are to be scheduled</param>
     public void ScheduleConference(List<Talk> talks)
     {
         do
@@ -22,6 +26,11 @@ public class ConferenceManager
         } while (talks.Count > 0);
     }
 
+   
+    /// <summary>
+    /// Formats all tracks into an easy to read list
+    /// </summary>
+    /// <returns>Events for each track</returns>
     public List<string> PrintConferenceTimeTable()
     {
         DateTime morningStart = Config.MorningSessionStart;

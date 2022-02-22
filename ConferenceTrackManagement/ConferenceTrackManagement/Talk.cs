@@ -16,6 +16,7 @@ public class Talk
         return $"{nameof(Title)}: {Title}, {nameof(Duration)}: {Duration}";
     }
 
+    //Overwritten to allow easy comparison while testing. (Compare values, not reference to an object)
     public override bool Equals(object? obj)
     {
         if (obj is null)

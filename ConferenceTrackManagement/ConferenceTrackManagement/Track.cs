@@ -13,6 +13,11 @@ public class Track
         AfternoonSession = new Session(afternoonMinutes);
     }
 
+    /// <summary>
+    /// Fill morning and afternoon session with talks
+    /// </summary>
+    /// <param name="talks">available talks</param>
+    /// <returns>list of remaining talks</returns>
     public List<Talk> FillTrack(List<Talk> talks)
     {
         List<Talk> restTalks = MorningSession.FillSession(talks);
@@ -20,6 +25,15 @@ public class Track
         return restTalks;
     }
 
+    /// <summary>
+    /// Creates an easy to read Timetable for the session. In addition to the filled sessions, social events like lunch
+    /// and the networking event will also be listed in their timeslot.
+    /// </summary>
+    /// <param name="morningStart">start time of the morning session</param>
+    /// <param name="afternoonStart">start time of the afternoon session</param>
+    /// <param name="lunchStart">start time of lunch</param>
+    /// <param name="minNetworkingWaiting">Minimum time that has to past after the start of the afternoon session in order to schedule the networking event</param>
+    /// <returns>List of formatted strings containing each activity with their start time</returns>
     public List<string> CreatePrintableTrackTimeTable(DateTime morningStart, DateTime afternoonStart, DateTime lunchStart, TimeSpan minNetworkingWaiting)
     {
         List<string> track = new List<string>();
