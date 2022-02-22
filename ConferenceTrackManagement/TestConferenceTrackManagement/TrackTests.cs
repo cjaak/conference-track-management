@@ -64,7 +64,7 @@ public class TrackTests
         var morningStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 9, 0, 0);
         var afternoonStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 13, 0, 0);
         var lunchStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 12, 0, 0);
-        TimeSpan networkingWaitTime = new TimeSpan(0, 60, 0);
+        TimeSpan networkingWaitTime = new TimeSpan(0, 180, 0);
 
         track.MorningSession.TalksInSession = new List<Talk>()
         {
@@ -84,6 +84,43 @@ public class TrackTests
             "12:00 PM Lunch",
             "01:00 PM Sample B 120min",
             "04:00 PM Networking Event"
+        };
+
+        List<string> output =
+            track.CreatePrintableTrackTimeTable(morningStart, afternoonStart, lunchStart, networkingWaitTime);
+
+        Assert.That(output, Is.EqualTo(expectedOutput));
+    }
+    
+    [Test]
+    public void CreatePrintableTrackTimeTable_RegularFinish_ReturnsListOfAllFormattedEvents()
+    {
+        Track track = new Track(180, 240);
+        
+        var dateNow = DateTime.Now;
+        var morningStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 9, 0, 0);
+        var afternoonStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 13, 0, 0);
+        var lunchStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 12, 0, 0);
+        TimeSpan networkingWaitTime = new TimeSpan(0, 180, 0);
+
+        track.MorningSession.TalksInSession = new List<Talk>()
+        {
+            new Talk("Sample A", 90)
+        };
+
+        track.AfternoonSession.RestMinutes = new TimeSpan(0, 0, 0);
+
+        track.AfternoonSession.TalksInSession = new List<Talk>()
+        {
+            new Talk("Sample B", 240)
+        };
+
+        List<string> expectedOutput = new List<string>()
+        {
+            "09:00 AM Sample A 90min",
+            "12:00 PM Lunch",
+            "01:00 PM Sample B 240min",
+            "05:00 PM Networking Event"
         };
 
         List<string> output =
