@@ -19,7 +19,28 @@ public class Track
         restTalks = AfternoonSession.FillSession(restTalks);
         return restTalks;
     }
-    
+
+    public List<string> CreatePrintableTrackTimeTable(DateTime morningStart, DateTime afternoonStart, DateTime lunchStart, TimeSpan minNetworkingWaiting)
+    {
+        List<string> track = new List<string>();
+        track.AddRange(MorningSession.CreatePrintableList(morningStart));
+        track.Add($"{lunchStart:hh:mm tt} Lunch");
+        track.AddRange(AfternoonSession.CreatePrintableList(afternoonStart));
+        TimeSpan timeBeforeNetworkingCanStart = AfternoonSession.MaxDuration - minNetworkingWaiting;
+        DateTime networking;
+        //Assumption: Networking Event starts right after all afternoon talks are finished.
+        //              Exception: Afternoon activities finish early
+        if (AfternoonSession.RestMinutes < timeBeforeNetworkingCanStart)
+        {
+            networking = afternoonStart.Add(minNetworkingWaiting);
+        }
+        else
+        {
+            networking = afternoonStart.Add(AfternoonSession.RestMinutes);
+        }
+        track.Add($"{networking:hh:mm tt} Networking Event");
+        return track;
+    }
     
 
     public override string ToString()
