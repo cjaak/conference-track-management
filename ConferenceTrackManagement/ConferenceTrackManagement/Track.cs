@@ -30,7 +30,7 @@ public class Track
         DateTime networking;
         //Assumption: Networking Event starts right after all afternoon talks are finished.
         //              Exception: Afternoon activities finish early
-        if (AfternoonSession.RestMinutes < timeBeforeNetworkingCanStart)
+        if (AfternoonSession.RestMinutes > timeBeforeNetworkingCanStart)
         {
             networking = afternoonStart.Add(minNetworkingWaiting);
         }
