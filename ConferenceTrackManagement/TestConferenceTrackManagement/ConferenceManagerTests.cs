@@ -44,8 +44,11 @@ public class ConferenceManagerTests
         track1.AfternoonSession.RestMinutes = new TimeSpan(0);
         
         track2.MorningSession.TalksInSession.Add(new Talk("Sample C", 180));
-        track2.AfternoonSession.TalksInSession.Add(new Talk("Sample B", 120));
+        track2.AfternoonSession.TalksInSession.Add(new Talk("Sample D", 120));
         track2.AfternoonSession.RestMinutes = new TimeSpan(0,120,0);
+
+        manager.Tracks.Add(track1);
+        manager.Tracks.Add(track2);
 
         List<string> expected = new List<string>()
         {
@@ -55,9 +58,9 @@ public class ConferenceManagerTests
             "01:00 PM Sample B 240min",
             "05:00 PM Networking Event",
             "Track 2:",
-            "09:00 AM Sample A 180min",
+            "09:00 AM Sample C 180min",
             "12:00 PM Lunch",
-            "01:00 PM Sample B 120min",
+            "01:00 PM Sample D 120min",
             "04:00 PM Networking Event",
         };
 
