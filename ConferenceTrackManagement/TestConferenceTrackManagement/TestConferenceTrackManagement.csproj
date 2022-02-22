@@ -19,4 +19,17 @@
       <ProjectReference Include="..\ConferenceTrackManagement\ConferenceTrackManagement.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Data" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Data\test_input_empty.txt" />
+      <Resource Include="Data\test_input_empty.txt" />
+      <None Remove="Data\test_input_invalid.txt" />
+      <Resource Include="Data\test_input_invalid.txt" />
+      <None Remove="Data\test_input_valid.txt" />
+      <Resource Include="Data\test_input_valid.txt" />
+    </ItemGroup>
+
 </Project>

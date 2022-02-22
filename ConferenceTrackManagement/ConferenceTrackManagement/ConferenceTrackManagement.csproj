@@ -20,5 +20,10 @@
       <PackageReference Include="Moq" Version="4.16.1" />
     </ItemGroup>
 	
+    <ItemGroup>
+      <None Remove="Data\input_file.txt" />
+      <Resource Include="Data\input_file.txt" />
+    </ItemGroup>
+	
 
 </Project>

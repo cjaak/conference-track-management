@@ -9,13 +9,6 @@ namespace ConferenceTrackManagement
         static void Main(string[] args)
         {
             #region Configure
-            
-            #endregion
-            
-            InputHandler handler = new InputHandler(path);
-            handler.CreateListOfTalks();
-            Console.WriteLine(string.Join("\n", handler.Talks));
-            
             DateTime date = DateTime.Now;
             Configuration config = new Configuration(
                 180,
@@ -25,13 +18,19 @@ namespace ConferenceTrackManagement
                 new DateTime(date.Year, date.Month, date.Day, 12,0,0),
                 new DateTime(date.Year, date.Month, date.Day, 16,0,0)
             );
-
-            Console.WriteLine(config.NetworkingMinimumWaitingPeriod);
+            #endregion
             
+            InputHandler handler = new InputHandler(path);
+            handler.CreateListOfTalks();
+            Console.WriteLine("CONVERTED INPUT: ");
+            Console.WriteLine(string.Join("\n", handler.Talks));
+
+
             ConferenceManager manager = new ConferenceManager(config);
             manager.ScheduleConference(handler.Talks);
 
             List<string> formattedTable = manager.PrintConferenceTimeTable();
+            Console.WriteLine("CONFERENCE TIMETABLE: ");
             Console.WriteLine(string.Join("\n", formattedTable));
         }
     }
